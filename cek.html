@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cek Kelulusan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e0f7fa;
+      text-align: center;
+      padding: 40px;
+      margin: 0;
+    }
+    h1 {
+      color: #00796b;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    input {
+      padding: 10px;
+      width: 280px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #00796b;
+      color: white;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    .result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #333;
+      padding: 20px;
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hidden {
+      display: none;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cek Hasil Kelulusan</h1>
+  <input type="text" id="nisn" placeholder="Masukkan Nomor Induk Siswa Nasional" /><br />
+  <button onclick="cekKelulusan()">Cek Kelulusan</button>
+  <button id="printBtn" class="hidden" onclick="window.print()">Cetak Hasil</button>
+
+  <div class="result" id="result"></div>
+
+  <footer>
+    &copy; 2025 SDN 1 Bendungan — Selamat Jalan, Pahlawan Kecil!
+  </footer>
+
+  <script>
+    function cekKelulusan() {
+      const nisn = document.getElementById("nisn").value.trim();
+      const result = document.getElementById("result");
+      const printBtn = document.getElementById("printBtn");
+
+      const dataLulus = {
+        "0134462283": "AYU ANDINI",
+        "0128069969": "AZRIEL KHOERUL AZAM",
+        "3121698157": "CALVYN RIAN SAPUTRA",
+        "3127902789": "DICKY MAULANA",
+        "0135836743": "DINI SRI WAHYUNI",
+        "3138190678": "FATIMAH EKA PUTRI",
+        "0134785183": "FAUZI IBAADILLAH",
+        "0137336541": "KELLY JULLIYANTI",
+        "0137591766": "KHAIRUNNISA SALSABILA",
+        "0127032421": "KIANA SEPTIANI",
+        "3137072485": "MUHAMMAD TOMI HENDRIYANSYAH",
+        "3127022238": "PUTRA YUDHA PRATAMA",
+        "3132058535": "RAFA RAODLOTUL FARHI",
+        "0131474561": "RISMAYANTI",
+        "3138048437": "SALMA FIKRIYAH",
+        "0126671419": "SHILFA KHUMAIRA",
+        "0133663684": "SYAILENDRA TANTULAR WIJAYA",
+        "3138561159": "WIDI NUR FAJRI",
+        "0132363038": "WISNU ALFIANSYAH"
+      };
+
+      if (dataLulus[nisn]) {
+        result.innerHTML = `
+          <strong>Selamat, ${dataLulus[nisn]}!</strong><br>
+          Kamu dinyatakan <span style="color:green;"><strong>LULUS</strong></span> dari SDN 1 Bendungan Tahun Ajaran 2024/2025.<br><br>
+          <em>Selamat, Anda dinyatakan <strong>LULUS</strong>! Silakan ambil Surat Keterangan Lulus di Ruang Kantor dengan berpakaian Rapi dan Sopan.</em>
+        `;
+        printBtn.classList.remove("hidden");
+      } else {
+        result.innerHTML = `<span style="color:red;">Data tidak ditemukan. Silakan periksa kembali.</span>`;
+        printBtn.classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
